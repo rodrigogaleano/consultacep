@@ -39,6 +39,7 @@ export const Input = styledComponents.input`
 `;
 
 export const Button = styledComponents.button`
+
     width: 80%;
     height: 50px;
     border-radius: 6px;
@@ -49,4 +50,10 @@ export const Button = styledComponents.button`
     font-weight: bold;
     margin: 10px;
     cursor: pointer;
+    transform: scale(1);
+    transition: transform .2s;
+
+    &:hover {
+        transform: scale(1.02);
+    }
 `;

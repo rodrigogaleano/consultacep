@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import { getCep } from './services/api';
-import {Container} from './styles';
+import { Container } from './styles';
 
 function App() {
 
@@ -27,9 +27,26 @@ function App() {
             cidade: data.localidade,
             estado: data.uf,
           });
+        })
+        .catch(() => { // Se der algum erro, limpa os campos do formulário
+          setFields({
+            ...fields,
+            rua: '',
+            bairro: '',
+            cidade: '',
+            estado: '',
+          });
         });
+    } else { // Se o cep não tem 8 dígitos, limpa os campos do formulário
+      setFields({
+        ...fields,
+        rua: '',
+        bairro: '',
+        cidade: '',
+        estado: '',
+      });
     }
-  }
+  };
 
   // Função que atualiza os campos do formulário
   const handleChange = (event) => {
@@ -40,20 +57,20 @@ function App() {
   }
 
   // Função que executa quando o formulário é submetido
-  const handleSubmit = (event) => { 
+  const handleSubmit = (event) => {
     console.log(fields); // Imprime os campos do formulário
   }
 
   return (
     <Container>
       <h1>Consulta CEP</h1>
-      <Form 
-        handleChange={handleChange} 
+      <Form
+        handleChange={handleChange}
         handleSubmit={handleSubmit}
         checkCep={checkCep}
         fields={fields}
       />
-     </Container>
+    </Container>
   );
 }
 
