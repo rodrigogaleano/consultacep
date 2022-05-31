@@ -1,6 +1,7 @@
 import React from 'react';
+import Form from './components/Form';
 import { getCep } from './services/api';
-import { Formulario } from './styles';
+import {Container} from './styles';
 
 function App() {
 
@@ -44,20 +45,15 @@ function App() {
   }
 
   return (
-    <div className="App">
-
+    <Container>
       <h1>Consulta CEP</h1>
-
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="cep" placeholder='cep' value={fields.cep} onChange={handleChange} onBlur={checkCep} /> <br />
-        <input type="text" name="rua" placeholder='rua' value={fields.rua} onChange={handleChange} /> <br />
-        <input type="text" name="numero" placeholder='numero' value={fields.numero} onChange={handleChange} /> <br />
-        <input type="text" name="bairro" placeholder='bairro' value={fields.bairro} onChange={handleChange} /> <br />
-        <input type="text" name="cidade" placeholder='cidade' value={fields.cidade} onChange={handleChange} /> <br />
-        <input type="text" name="estado" placeholder='estado' value={fields.estado} onChange={handleChange} /> <br />
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
+      <Form 
+        handleChange={handleChange} 
+        handleSubmit={handleSubmit}
+        checkCep={checkCep}
+        fields={fields}
+      />
+     </Container>
   );
 }
 
